@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from .models import Profile
+import pdfkit
+from django.http import HttpResponse
+from django.template import loader
+import io
 
 
 # View function for form submission
@@ -32,10 +36,18 @@ def accept(request):
     return render(request, 'pdf/accept.html')
 
 
-# Retrieve the user profile
+# Retrieve the user profile and generate pdf
 def cv(request, user_id):
     user_profile = Profile.objects.get(pk=user_id)
-    return render(
-        request, 'pdf/cv.html',
-        {'user_profile': user_profile}
-    )
+    template = loader.get_template('pdf/cv.html')
+    html = template.render({'user_profile': user_profile})
+    options = {
+        'encoding': 'UTF-8',
+        'page-size': 'Letter',
+    }
+    pdf = pdfkit.from_string(html, False, options=options)
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = ('attachment; filename="{}".pdf'
+                                       .format(user_profile.name))
+
+    return response
