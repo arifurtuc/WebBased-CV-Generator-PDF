@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>CV List</title>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Header section -->
+        <div class="row">
+            <div class="col-md-6 offset-md-3 text-center">
+                <h1>CV List</h1>
+                <hr>
+            </div>
+        </div>
+
+        <!-- Displaying all CV -->
+        <div class="row">
+            <div class="col-md-6 offset-md-3 text-center">
+                {% for item in cv %}
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ item.name }}
+                        <a class="btn btn-success" href="{% url 'cv' item.id %}">Download</a>
+                        </li>
+                    </ul>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-3 text-center">
+                <hr>
+                <a href="{% url 'accept' %}" class="btn btn-success">Add New CV</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

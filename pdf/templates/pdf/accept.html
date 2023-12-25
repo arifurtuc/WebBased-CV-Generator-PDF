@@ -8,13 +8,26 @@
 </head>
 <body>
     <div class="container">
+        <!-- Navigation -->
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary">
+                    <div class="container-fluid">
+                        <a class="navbar-brand">CV Generator</a>
+                        <div class="navbar-nav">
+                        <a class="btn btn-success nav-link active text-white" href="{% url 'list' %}">See All CV</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
 
         <!-- Header section -->
         <div class="row">
             <div class="col-md-6 offset-md-3 text-center">
-                <h1>CV Generator</h1>
                 <hr>
                 <h3>Please fill out your details</h3>
+                <hr>
             </div>
         </div>
 

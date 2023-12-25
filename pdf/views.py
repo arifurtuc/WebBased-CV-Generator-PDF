@@ -51,3 +51,8 @@ def cv(request, user_id):
                                        .format(user_profile.name))
 
     return response
+
+
+def cv_list(request):
+    all_cv = Profile.objects.all()
+    return render(request, 'pdf/list.html', {'cv': all_cv})
