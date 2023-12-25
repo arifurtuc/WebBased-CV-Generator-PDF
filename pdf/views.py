@@ -26,4 +26,7 @@ def accept(request):
         # Save the Profile object to the database
         profile.save()
 
+        # Redirect to success page
+        return render(request, 'pdf/success.html')
+
     return render(request, 'pdf/accept.html')
