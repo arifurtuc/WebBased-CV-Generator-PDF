@@ -30,3 +30,12 @@ def accept(request):
         return render(request, 'pdf/success.html')
 
     return render(request, 'pdf/accept.html')
+
+
+# Retrieve the user profile
+def cv(request, user_id):
+    user_profile = Profile.objects.get(pk=user_id)
+    return render(
+        request, 'pdf/cv.html',
+        {'user_profile': user_profile}
+    )
